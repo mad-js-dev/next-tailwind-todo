@@ -59,9 +59,7 @@ export default function TaskList(props:TaskListProps) {
         </div>
         <div className="flex flex-col">
             {filterData().map((item, index) =>
-                <div key={index}>
-                    <TaskListItem title={item.title} description={item.description} completed={item.completed}/>
-                </div>
+                <TaskListItem key={index} title={item.title} description={item.description} completed={item.completed}/>
             )}
         </div>
       </main>
