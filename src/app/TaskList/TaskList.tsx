@@ -1,8 +1,24 @@
 'use client'
 import { MdEdit, MdAdd, MdSearch, MdCheckBox, MdCheckBoxOutlineBlank, MdAllInclusive } from 'react-icons/md';
 import TaskListItem from "./TaskListItem";
+import ToggleButton from "../ToggleButton/ToggleButton";
 
-export default function TaskList() {
+type TaskListItemProps = {
+    title: string
+    description: string
+    completed:boolean
+}
+
+type TaskListProps = {
+    title: string
+    data: TaskListItemProps[]
+}
+
+export default function TaskList(props:TaskListProps) {
+
+    function filterData() {
+        return props.data
+    }
 
     return (
       <main className="flex flex-col gap-3 rounded-xl bg-slate-50 shadow-lg p-3 relative z-1">
@@ -35,27 +51,19 @@ export default function TaskList() {
                     </div>
                 </div>
             </div>
-            <div className="basis-1/4">
-                <div className="flex border rounded px-2 py-1 text-xs">
-                    <div className="content-center pr-2">
-                        <MdCheckBoxOutlineBlank /> 
-                    </div>
-                    <div className="content-center text-xs">
-                        Not done
-                    </div>
+            <div className="basis-1/4 h-10">
+                <div className="h-full">
+                    <ToggleButton />
                 </div>
             </div>
         </div>
-        <div className="flex flex-row">
-            <TaskListItem />
+        <div className="flex flex-col">
+            {filterData().map((item, index) =>
+                <div key={index}>
+                    <TaskListItem title={item.title} description={item.description} completed={item.completed}/>
+                </div>
+            )}
         </div>
       </main>
     );
   }
-
-  /*
-                      <MdCheckBox /> 
-
-<MdCheckBoxOutlineBlank /> 
-<MdAllInclusive />
-*/

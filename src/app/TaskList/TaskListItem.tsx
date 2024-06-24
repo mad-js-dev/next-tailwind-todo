@@ -1,12 +1,20 @@
 import { useState, useRef } from 'react';
 import classNames from "classnames";
 import { MdEdit, MdOutlineSave, MdCheckBox, MdCheckBoxOutlineBlank } from 'react-icons/md';
-export default function TaskList() { 
 
+
+
+type TaskListItemProps = {
+    title: string
+    description: string
+    completed:boolean
+}
+
+export default function TaskList(props:TaskListItemProps) { 
     let [editMode, setEditMode] = useState (false);
     let [completed, setCompleted] = useState (false);
-    let [title, setTitle] = useState ('Default title');
-    let [description, setDescription] = useState ('Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit optio libero aperiam eius dolorum facere, architecto temporibus esse.')
+    let [title, setTitle] = useState (props.title || 'Default title');
+    let [description, setDescription] = useState (props.description || 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit optio libero aperiam eius dolorum facere, architecto temporibus esse.')
     let titleInput = useRef<HTMLInputElement>(null);
     let descriptionInput = useRef<HTMLTextAreaElement>(null);
 
@@ -34,7 +42,6 @@ export default function TaskList() {
             "group", 
             {'is-editable': editMode}, 
             {'is-checked': completed}, 
-            `flex flex-row justify-between w-full`
         )}>
             <div className="flex flex-col w-full">
                 <div className="flex flex-row">
@@ -62,7 +69,7 @@ export default function TaskList() {
                         }
                         <div onClick={toggleEditMode}>
                             <div className="hidden group-[.is-editable]:block">
-                            <MdOutlineSave />
+                                <MdOutlineSave />
                             </div>
                             <div className="block group-[.is-editable]:hidden">
                                 <MdEdit />
