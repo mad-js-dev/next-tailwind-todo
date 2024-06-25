@@ -10,11 +10,13 @@ type TaskListItemProps = {
     title: string
     description: string
     completed:boolean
+    onChange?: Function
 }
 
 type TaskListProps = {
     title: string
     data: TaskListItemProps[]
+    onChange?: Function
 }
 
 export default function TaskList(props:TaskListProps) {
@@ -53,6 +55,11 @@ export default function TaskList(props:TaskListProps) {
             });
         }
         return result
+    }
+
+    function itemEdit(changeEvent:any) {
+        console.log('Tasklist edit.', changeEvent.data)
+        if(props.onChange) props.onChange(changeEvent)
     }
 
     return (
@@ -105,7 +112,13 @@ export default function TaskList(props:TaskListProps) {
         </div>
         <div className="flex flex-col">
             {filterData().map((item, index) =>
-                <TaskListItem key={index} title={item.title} description={item.description} completed={item.completed}/>
+                <TaskListItem 
+                    key={index} 
+                    title={item.title} 
+                    description={item.description} 
+                    completed={item.completed}
+                    onChange={(data:any) => itemEdit(data)}
+                />
             )}
         </div>
       </main>

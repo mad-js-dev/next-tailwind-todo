@@ -5,21 +5,22 @@ import { MdEdit, MdDelete, MdOutlineSave, MdCheckBox, MdCheckBoxOutlineBlank } f
 type TaskListItemProps = {
     title: string
     description: string
-    completed:boolean
+    completed:boolean,
+    onChange?: Function
 }
 
 export default function TaskList(props:TaskListItemProps) { 
+    // States
     let [editMode, setEditMode] = useState (false);
     let [expandedMode, setExpandedMode] = useState (false);
-    
-    let [completed, setCompleted] = useState (false);
-    let [title, setTitle] = useState (props.title || 'Default title');
-    let [description, setDescription] = useState (props.description || 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit optio libero aperiam eius dolorum facere, architecto temporibus esse.')
+    // Data props
+    let [completed, setCompleted] = useState(props.completed);
+    let [title, setTitle] = useState(props.title || 'Default title');
+    let [description, setDescription] = useState(props.description || 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit optio libero aperiam eius dolorum facere, architecto temporibus esse.')
+    // Dom Refs
     let titleInput = useRef<HTMLInputElement>(null);
     let descriptionInput = useRef<HTMLTextAreaElement>(null);
 
-    //setDescription(props.description)
-    
     
     useEffect(() => {
         setTitle(props.title)
@@ -32,9 +33,25 @@ export default function TaskList(props:TaskListItemProps) {
     useEffect(() => {
         setCompleted(props.completed)
     }, [props.completed]);
+    
+
+    useEffect(() => {
+        console.log('t', title != props.title)
+        console.log('d', description != props.description)
+        console.log('c', completed != props.completed)
+        if(
+            title != props.title || 
+            description!= props.description ||
+            completed != props.completed
+        ) {
+            const changeEvent = {action: 'edit', data: {title: title, description: description, completed: completed} as TaskListItemProps}
+            console.log('ev', changeEvent)
+            if(props.onChange) props.onChange(changeEvent)
+        }
+    }, [completed, description, props, title]);
 
     function toggleCheckbox() {
-        setCompleted(!completed)
+        setCompleted((prevCompleted) => !prevCompleted)
     }
 
     function toggleDescription() {
@@ -51,6 +68,16 @@ export default function TaskList(props:TaskListItemProps) {
             inputElement.selectionStart = inputElement.selectionEnd = inputElement.value.length
             setTimeout(() => {inputElement.focus()})
         }
+/*
+        if(!editMode) {
+            if(
+                title != props.title || 
+                description!= props.description
+            ) {
+                const changeEvent = {action: 'edit', data: {title: title, description: description, completed: completed} as TaskListItemProps}
+                if(props.onChange) props.onChange(changeEvent)
+            }
+        }*/
     }
 
     return (
@@ -95,9 +122,6 @@ export default function TaskList(props:TaskListItemProps) {
                         </div>
                     </div>
                     <div className="content-center pr-2" >
-                        {
-                            //!editMode && <MdEdit/>
-                        }
                         <div className="hover:cursor-pointer" onClick={toggleEditMode}>
                             <div className="hidden group-[.is-editable]:block">
                                 <MdOutlineSave  className="hover:text-green-600" />
