@@ -4,8 +4,28 @@ import TaskList from "./TaskList/TaskList";
 export default function Home() {
   const data  = [
     {
-      title: 'Lorem ipsum dolor sit amet',
+      title: 'Lorem ipsum dolor sit Alpha',
       description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit optio libero aperiam eius dolorum facere, architecto temporibus esse.',
+      completed: false
+    },
+    {
+      title: 'Lorem ipsum dolor sit Beta',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit optio libero aperiam eius dolorum facere, architecto temporibus esse.',
+      completed: false
+    },
+    {
+      title: 'Lorem ipsum dolor sit Charlie',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit optio libero aperiam eius dolorum facere, architecto temporibus esse.',
+      completed: false
+    },
+    {
+      title: 'Lorem ipsum dolor sit Delta',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit optio libero aperiam eius dolorum facere, architecto temporibus esse.',
+      completed: false
+    },
+    {
+      title: 'Lorem ipsum dolor sit amet',
+      description: 'Delta Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit optio libero aperiam eius dolorum facere, architecto temporibus esse.',
       completed: false
     },
     {
@@ -126,32 +146,12 @@ export default function Home() {
     {
       title: 'Lorem ipsum dolor sit amet',
       description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit optio libero aperiam eius dolorum facere, architecto temporibus esse.',
-      completed: false
+      completed: true
     },
     {
       title: 'Lorem ipsum dolor sit amet',
       description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit optio libero aperiam eius dolorum facere, architecto temporibus esse.',
-      completed: false
-    },
-    {
-      title: 'Lorem ipsum dolor sit amet',
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit optio libero aperiam eius dolorum facere, architecto temporibus esse.',
-      completed: false
-    },
-    {
-      title: 'Lorem ipsum dolor sit amet',
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit optio libero aperiam eius dolorum facere, architecto temporibus esse.',
-      completed: false
-    },
-    {
-      title: 'Lorem ipsum dolor sit amet',
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit optio libero aperiam eius dolorum facere, architecto temporibus esse.',
-      completed: false
-    },
-    {
-      title: 'Lorem ipsum dolor sit amet',
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit optio libero aperiam eius dolorum facere, architecto temporibus esse.',
-      completed: false
+      completed: true
     },
     {
       title: 'Lorem ipsum dolor sit amet',

@@ -1,7 +1,6 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import classNames from "classnames";
 import { MdEdit, MdDelete, MdOutlineSave, MdCheckBox, MdCheckBoxOutlineBlank } from 'react-icons/md';
-
 
 type TaskListItemProps = {
     title: string
@@ -12,11 +11,27 @@ type TaskListItemProps = {
 export default function TaskList(props:TaskListItemProps) { 
     let [editMode, setEditMode] = useState (false);
     let [expandedMode, setExpandedMode] = useState (false);
+    
     let [completed, setCompleted] = useState (false);
     let [title, setTitle] = useState (props.title || 'Default title');
     let [description, setDescription] = useState (props.description || 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit optio libero aperiam eius dolorum facere, architecto temporibus esse.')
     let titleInput = useRef<HTMLInputElement>(null);
     let descriptionInput = useRef<HTMLTextAreaElement>(null);
+
+    //setDescription(props.description)
+    
+    
+    useEffect(() => {
+        setTitle(props.title)
+    }, [props.title]);
+
+    useEffect(() => {
+        setDescription(props.description)
+    }, [props.description]);
+
+    useEffect(() => {
+        setCompleted(props.completed)
+    }, [props.completed]);
 
     function toggleCheckbox() {
         setCompleted(!completed)
@@ -37,7 +52,6 @@ export default function TaskList(props:TaskListItemProps) {
             setTimeout(() => {inputElement.focus()})
         }
     }
-
 
     return (
         <main className={classNames(
@@ -68,7 +82,8 @@ export default function TaskList(props:TaskListItemProps) {
                                 type="text"  
                                 ref={titleInput}
                                 className="
-                                bg-transparent border-2 rounded-md outline-0 p-1 box-border transition-all duration-300 no-underline group-hover/labelWrapper:underline  group-[.is-editable]:no-underline
+                                bg-transparent border-2 rounded-md outline-0 p-1 box-border transition-all duration-300 
+                                no-underline group-hover/labelWrapper:underline  group-[.is-editable]:no-underline
                                 border-slate-50 group-[.is-editable]:border-black 
                                 pl-0 group-[.is-editable]:pl-1 
                                 disabled:pointer-events-none

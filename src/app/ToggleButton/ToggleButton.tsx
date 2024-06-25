@@ -3,12 +3,17 @@
     import { MdCheckBox, MdCheckBoxOutlineBlank, MdAllInclusive } from 'react-icons/md';
     import classNames from "classnames";
 
-    export default function ToggleButton() {
+    type ToggleButtonProps = {
+        onChange: Function
+    }
+
+    export default function ToggleButton(props:ToggleButtonProps) {
         let [toggleState, setToggleState] = useState (false);
         let [selectedIndex, setSelectedIndex] = useState (0);
         
         function setState(index:number) {
             setSelectedIndex(index)
+            props.onChange(index)
         }
 
         return (
