@@ -1,11 +1,8 @@
 'use client'
+import type {searchBarProps} from '@/types/SearchBar.d'
 import { useRef, useState } from 'react';
 import { MdEdit, MdAdd, MdSearch, MdCheckBox, MdCheckBoxOutlineBlank, MdAllInclusive } from 'react-icons/md';
 import classNames from 'classnames';
-
-type searchBarProps = {
-    onChange: Function
-}
 
 export default function SearchBar(props:searchBarProps) {
     return (
@@ -20,7 +17,7 @@ export default function SearchBar(props:searchBarProps) {
                     <input 
                     type="text" 
                     placeholder="Search"
-                    className="bg-slate-100 outline-none"
+                    className="bg-slate-100 outline-none w-full"
                     onChange={e => props.onChange(e.target.value)}
                      />
                 </div>

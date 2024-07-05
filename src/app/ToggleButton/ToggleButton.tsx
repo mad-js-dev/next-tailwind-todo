@@ -1,12 +1,7 @@
-    'use client'
-    
+    import type { ToggleButtonProps } from '@/types/ToggleButton.d'
     import { useState } from 'react';
     import { MdCheckBox, MdCheckBoxOutlineBlank, MdAllInclusive } from 'react-icons/md';
     import classNames from "classnames";
-
-    type ToggleButtonProps = {
-        onChange: Function
-    }
 
     export default function ToggleButton(props:ToggleButtonProps) {
         let [toggleState, setToggleState] = useState (false);
@@ -40,7 +35,7 @@
                     </div>
                 </div>
                 <div className="content-center text-xs">
-                    { (selectedIndex==0) ? 'All' : (selectedIndex==1) ? 'Done' : 'Not done'}
+                    { (selectedIndex==0) ? 'All' : (selectedIndex==1) ? 'Complete' : 'Pending'}
                 </div>
             </div>
         );

@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
 import CounterSlice from './counterSlice'
+import TaskListSlice from './taskListSlice'
 
 export const store = configureStore({
-  reducer: {    counter: CounterSlice, // Connecting default exported Slice reducertyept
+  reducer: {    counter: CounterSlice, taskList: TaskListSlice, // Connecting default exported Slice reducertyept
 },
 })
 
