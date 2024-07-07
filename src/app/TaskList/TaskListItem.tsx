@@ -117,6 +117,7 @@ export default function TaskList(props:TaskListItemProps) {
                                 border-slate-50 group-[.is-editable]:border-black 
                                 pl-0 group-[.is-editable]:pl-1 
                                 disabled:pointer-events-none
+                                w-full
                                 "
                                 value={title} 
                                 onChange={e => setTitle(e.target.value)}
