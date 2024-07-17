@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit'
-import CounterSlice from './counterSlice'
 import TaskListSlice from './taskListSlice'
 
 export const store = configureStore({
